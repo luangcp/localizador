@@ -24,4 +24,4 @@ def coletar_localizacao():
     return {"status": "sucesso"}
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=10000)
